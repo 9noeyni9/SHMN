@@ -15,16 +15,17 @@
 <body>
 <%@include file="../include/nav.jsp" %>
 <div class="page-content">
-<div style="padding:60px 0; height: 100%;">
+<div style="width:100%">
+<div style="padding:50px 0; height: 100%;">
 	<div class="section-heading">
 				<h1>
-				&nbsp;관람안내<br><Br>
+				관람안내<br><Br>
 				</h1>
 
-	<img src="/resources/img/tkback.jpg">
+	<img src="/resources/img/tkback.jpg" style="width: 98%">
 	</div>
 	<div style="display: flex; ">
-		<div style="width: 70%;border-top: 1px solid gray; ">
+		<div style="width: 100%;border-top: 1px solid gray; ">
 			<table style="width: 90%;">
 				<tr style="border-bottom: 0.5px solid #ccc; height: 180px; padding: 55px 0;">
 				<td style="width: 230px;font-size: 24px;">관람시간</td>
@@ -43,19 +44,26 @@
 				<tr>
 				<td style="width: 230px;font-size: 24px; padding: 55px 0;">입장권 구매</td>
 				<td style="font-size: 16px;padding: 55px 0;">
-				- 예약 및 취소기간 : 관람희망일 7일전 10:00 ~ 관람희망일 1일전 23:00 까지<br>
 				<p class="gbg_hypen" style="color: blue; font-weight: bold;">- 단체
 				예약은 경복궁 문화재 안내실로 별도 문의 바랍니다.<br>
 				<span style="color: #7a7a7a;">* 문의처 : 경복궁 문화재안내실 02-3700-3904</span></p>
-				<a href="/sae_ticket/tkMyBook">예약 확인 바로가기 > </a>
-				<div>
+			<br />
+			
+			<c:if test="${member.userId != null }">
+			<a href="/sae_ticket/tkMyBook">
+			<button style="background-color: #45489a; color: white; border-color: #45489a;">
+				예약 확인 바로가기 </button></a>
+			
+			</c:if>
+			
+			<div>
 				<br><br>
 				<section id="container" style="display: flex;">
 <div style="width:25%;">
 			&nbsp;&nbsp;<input type="date" id="calendar">
-</div>
+</div>&emsp;&emsp;&ensp;&ensp;
 <div style="width:70%;">
-			<iframe id="ticket" src="/sae_ticket/ticketBook?day=2" width="80%" height="50%"> </iframe>
+			<iframe id="ticket" src="/sae_ticket/ticketBook?day=2" width="90%" height="60%"> </iframe>
 </div>
 		</section>
 		</div>
@@ -77,13 +85,20 @@
 	</div>
 
 			<c:if test="${member.userId == 'admin' }">
-				<button>
-					<a href="/sae_ticket/tkWriteView"> 티켓 등록</a>
+			<a href="/sae_ticket/tkWriteView"> 
+				<button style="background-color: #45489a; color: white; border-color: #45489a;">
+					티켓 등록
 				</button>
+				</a>
 			</c:if>
 	</div>
 	
 	<script>
+
+	document.getElementById('calendar').value 
+	= new Date().toISOString().substring(0, 10);
+
+	
 		//예약페이지로
 		$("#calendar").change(function() {
 			var date = $('#calendar').val();
@@ -92,6 +107,7 @@
 		})
 	</script>
 
+</div>
 </div>
 <footer class="footer">
 <p>Copyright &copy; 2019 Company Name . Design: TemplateMo</p>
